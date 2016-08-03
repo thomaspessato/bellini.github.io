@@ -3,11 +3,11 @@
   "name": "Checklist",
   "short_name": "Checklist",
   "icons": [{
-        "src": "/checklist/img/checklist.png",
-         "sizes": "192x192",
+        "src": "https://192.168.0.7/bellini.github.io/checklist/img/checklist.png?v=1",
+        "sizes": "192x192",
         "type": "image/png"
       }],
-  "scope": "/checklist/",
+  "scope": "checklist/",
   "start_url": "index.html",
   "display": "standalone",
   "orientation": "portrait",
