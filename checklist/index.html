@@ -3,10 +3,11 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Checklist</title>
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<link rel="stylesheet" href="css/material.min.css">
 	<link rel="stylesheet" href="css/style.css">	
+	<link rel="manifest" href="js/manifest.json">
  </head>
   </head>
   <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
@@ -113,7 +114,7 @@
 <script type="text/javascript">
 if('serviceWorker' in navigator){
 	navigator.serviceWorker.register('js/sw.js', {
-		scope: '/checklist'
+		scope: '/'
 	}).then(function(reg) {
 		//document.getElementById('tesste').innerHTML = '-------> SUCCESS';
 	}, function(err) {
