@@ -1,0 +1,27 @@
+<div class="mdl-card">
+	<div class="mdl-card__supporting-text">                
+		{{ item.name }}?
+	</div>
+	<div class="mdl-card__actions">
+		<label  class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ label }}-{{ loop.index }}1">
+		<input type="radio" id="option-{{ label }}-{{ loop.index }}1" class="mdl-radio__button" name="question-{{ label }}-{{ loop.index }}" value="1">
+		<span class="mdl-radio__label ">OK</span>
+		</label >
+		<label  class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ label }}-{{ loop.index }}2">
+		<input type="radio" id="option-{{ label }}-{{ loop.index }}2" class="mdl-radio__button" name="question-{{ label }}-{{ loop.index }}" value="0">
+		<span class="mdl-radio__label ">N/A</span>
+		</label >
+		<label  class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ label }}-{{ loop.index }}3">
+		<input type="radio" id="option-{{ label }}-{{ loop.index }}3" class="mdl-radio__button" name="question-{{ label }}-{{ loop.index }}" value="-1">
+		<span class="mdl-radio__label ">Fuu</span>
+		</label >
+		<label  class="">
+		<input type="file" accept="image/*;capture=camera">
+		<span class="mdl-radio__label ">Foto</span>
+		</label >
+		<div class="mdl-textfield mdl-js-textfield" style="display:block;">
+			<textarea class="mdl-textfield__input" type="text" rows= "3" id="question-obs-{{ label }}-{{ loop.index }}" name="question-obs-{{ label }}-{{ loop.index }}"></textarea>
+			<label  class="mdl-textfield__label " for="question-obs-{{ label }}-{{ loop.index }}">Obs...</label >
+		</div>
+	</div>
+</div>
