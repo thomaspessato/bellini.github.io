@@ -1,4 +1,4 @@
-const currentCacheName = 'static-v2';
+const currentCacheName = 'static-v3';
 const urlsToCache = [
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v17/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2',

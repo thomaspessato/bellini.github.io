@@ -16,7 +16,6 @@
 	};
 
 	var PRIVATE = {};
-
 	PRIVATE.elemForm = document.getElementById("form-checklist");
 	PRIVATE.elemQuestionCount = document.getElementById("question-count");
 	PRIVATE.questionList = [];
@@ -326,7 +325,7 @@
 				PRIVATE.questionLength = sectionIndex;
 				PRIVATE.elemQuestionCount.innerHTML = "0/" + sectionIndex;
 
-				PRIVATE.elemForm.innerHTML = html + '<div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised">Enviar</button></div>';
+				PRIVATE.elemForm.innerHTML = html + '<div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised">Enviar</button></div><br><br><br><div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised" type="reset" onclick="location.hash = \'\';location.hash=\'section-info\'">Limpar</button></div>';
 				PRIVATE.setStoreInfo();
 				bindEvents();
 			});
@@ -473,8 +472,9 @@
 			//********************************************
 			// Infos da empresa
 			//********************************************
+			var storeName = PRIVATE.elemSectionInfo.querySelector('select[name="store-name"]').value;
 			var storeInfo = [
-				{name : "EMPRESA",  value : PRIVATE.elemSectionInfo.querySelector('select[name="store-name"]').value},
+				{name : "EMPRESA",  value : storeName},
 				{name : "ALVARA" , value : PRIVATE.elemSectionInfo.querySelector('input[name="store-register"]').value},
 				{name : "RESPONSÁVEL" , value : PRIVATE.elemSectionInfo.querySelector('input[name="store-manager"]').value},
 				{name : "DATA/HORA" , value : PRIVATE.getDateTime()}
@@ -575,7 +575,7 @@
 				}
 			}
 
-			doc.save('Test.pdf');
+			doc.save(storeName + '.pdf');
 		}, function() {
 
 		});
