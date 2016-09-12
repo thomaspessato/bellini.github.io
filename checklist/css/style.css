@@ -18,3 +18,18 @@
 .mdl-card__supporting-text {
 	font-size: 18px;
 }
+
+.nav-section-text .mdl-navigation__link{
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.wrapper-button{
+	display:block;
+	margin: 20px 5px;
+}
+
+.wrapper-button button{
+	width: 100%;
+}

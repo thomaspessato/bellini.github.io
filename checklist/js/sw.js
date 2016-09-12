@@ -1,11 +1,18 @@
-const currentCacheName = 'static-v1';
+const currentCacheName = 'static-v2';
 const urlsToCache = [
   'https://fonts.googleapis.com/icon?family=Material+Icons',
   'https://fonts.gstatic.com/s/materialicons/v17/2fcrYFNaTjcS6g4U3t-Y5UEw0lE80llgEseQY3FEmqw.woff2',
-  '/checklist/css/material.min.css',
-  '/checklist/css/style.css',  
-  '/checklist/js/material.min.js',
-  '/checklist/index.html'
+  '../css/material.min.css',
+  '../css/style.css',
+  'material.min.js',
+  'nunjucks.min.js',
+  'jspdf.min.js',
+  'jspdf.plugin.autotable.src.js',
+  'main.js',
+  '../template/info.html',
+  '../template/question.html',
+  '../template/section.html',
+  '../index.html'
 ];
 
 self.addEventListener('install', function(event) {
@@ -21,7 +28,7 @@ self.addEventListener('fetch', function(event) {
 
 	if (requestUrl.origin === location.origin) {
 		if (requestUrl.pathname === '/') {
-			event.respondWith(caches.match('/checklist/index.html'));
+			event.respondWith(caches.match('../index.html'));
 			return;
 		}
 	}
@@ -33,20 +40,20 @@ self.addEventListener('fetch', function(event) {
 					return cacheResponse;
 				}
 
-				var fetchRequest = event.request;						
+				var fetchRequest = event.request;
 				return fetch(fetchRequest).then(function(response){
 					if(response && response.status === 200){
 						caches.open(currentCacheName).then(function(cache) {
 							//console.log('SW Cache -> put request:', response.url);
 							cache.put(event.request, response);
 						});
-					}                    
+					}
 
 					return response.clone();
 				});
 			})
 			.catch(function(){
-				
+
 			})
 	);
 });

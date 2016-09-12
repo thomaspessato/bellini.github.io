@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="theme-color" content="#3f51b5">
+        <title>Teste</title>
+    </head>
+    </head>
+    <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">       
+        <script src="js/nunjucks.min.js"></script> 
+        <script type="text/javascript">
+			var xxxx = function() {
+				// we customize nunjucks a little
+				var nunTags= {
+						tags: {
+							blockStart: '{%',
+							blockEnd: '%}',
+							variableStart: '{{',
+							variableEnd: '}}',
+							commentStart: '<!--',
+							commentEnd: '-->'
+						}
+					};
+
+				// and use our own loader, so require.js will not start crying
+				var NunLoader = nunjucks.Loader.extend({
+					async: false,
+					getSource: function(name){
+						return { src: name };
+					}
+				});
+
+				var replaceAccents = function (str) {
+					return str
+						.replace(/[Ã¡Ã Ã£Ã¢Ã¤]/ig,'a')
+						.replace(/[Ã©Ã¨ÃªÃ«]/ig,'e')
+						.replace(/[Ã­Ã¬Ã®Ã¯]/ig,'i')
+						.replace(/[Ã³Ã²ÃµÃ´Ã¶]/ig,'o')
+						.replace(/[ÃºÃ¹Ã»Ã¼]/ig,'u')
+						.replace(/[Ã§]/ig,'c');
+				};
+
+				/**
+				 * This class manages the templates within Apps, Components, etc.
+				 *
+				 * Apps and components treat their templates using TemplateManager
+				 * automatically, although you can use it manually if you will.
+				 *
+				 * You'll have a reference to it inside "setup" and "init" of Apps and Comps
+				 * if they are using templates. Its the __shared.dependencies.temaplteManager object.
+				 *
+				 * It can also be required by it's id "mod.templateManager" (as any other component)
+				 *
+				 * Once you have access to it, run
+				 *
+				 * ```javascript
+				 * var tm = new TemplateManager(yourDIctionary, someReference);
+				 * tm.create('template1', "template string");
+				 * tm.create('template2', "template string");
+				 * tm.create('template3', "template string");
+				 * var r = tm.render('template2', {});
+				 * ```
+				 *
+				 * @pkg  mod.templateManager
+				 * @class templateManager
+				 * @namespace mod
+				 */
+				return function TemplateManager(dict, ref) {
+
+					var templates= {},
+						rawTemplates= {},
+						dictionary= dict;
+
+					// we use a special environment from NunJucks
+					var env= new nunjucks.Environment(new NunLoader(), nunTags);
+
+					// the reference is so you can use it as your scope
+					this.ref= ref;
+					this.dictionary= dictionary;
+
+					// this method simply sets some references for further use
+					this.setReferences= function(n, e, d){
+						var filters= this.filters;
+						nun= n;
+						env= e;
+						dictionary= d;
+
+						// lets just set some references here
+						this.engine= env;
+
+						// adding filters to be used within templates
+						for(var i in filters){
+							if(typeof filters[i] == 'function'){
+								this.engine.addFilter(i, filters[i]);
+							}
+						}
+					};
+
+					// we do this to have ES6 variable syntax working too ( ${var} )
+					function fixVariableSyntax (str) {
+						return str.replace(/\$\{([^\}]*)\}/ig, "{{$1}}");
+					}
+
+					/**
+					 * Creates a new template to be used, referenced by its ID.
+					 *
+					 * @param tplName {String} The template ID.
+					 * @param tplString {String} The template string itself.
+					 */
+					this.create= function(tplName, tplString){
+
+						var i = null,
+							tpl= null;
+
+						if(typeof tplName == 'string'){
+							// retrocompatibility with ES6 template format and default nunjucks
+							tplString= fixVariableSyntax(tplString);
+							/// then we store the new template and its raw string
+							templates[tplName]= new nunjucks.Template(tplString, env, env);
+							rawTemplates[tplName]= tplString;
+						}else{
+							// you can create a list of templates
+							for(i in tplName){
+								// and here we create all the templates at once
+								if(typeof tplName[i] == 'string'){
+									// also applying the new syntax
+									tplName[i]= fixVariableSyntax(tplName[i]);
+									// and storing the templates and its raw version
+									templates[i]= new nunjucks.Template(tplName[i], env, env);
+									rawTemplates[i]= tplName[i];
+								}else{
+									// or, in case it already is a templateObject
+									// we simply store it
+									templates[i]= tplName[i];
+									rawTemplates[i]= tplName[i].tmplStr;
+								}
+							}
+						}
+					};
+
+					/**
+					 * Gets the string from the given template, or undefined.
+					 *
+					 * @method get
+					 * @param {String} templateName
+					 * @return {String}
+					 */
+					this.get= function(tplName){
+						return templates[tplName] || false;
+					};
+
+					/**
+					 * Renders the given template, binding the data object passed
+					 * as second argument.
+					 * It also binds the dictionary values for l10n markups.
+					 *
+					 * @method render
+					 * @param {String} templateName
+					 * @param {Object} [dataBinding]
+					 * @param {Function} [callback]
+					 * @return {DOMFragment}
+					 */
+					this.render= function(tplName, tplBinding){
+
+						var tpl= templates[tplName] || tplName,
+							tplStr= rawTemplates[tplName],
+							df,
+							wc,
+							tmpName= '',
+							TmpComp= null,
+							tmpParams= [],
+							params= {},
+							componentList= {},
+							componentsPromises = [],
+							callback = typeof arguments[arguments.length -1] == 'function' ? arguments[arguments.length -1] : null;
+
+						 // let's firstly, render from NunJucks
+						tpl= env.render(tplStr, Object.assign( {}, rawTemplates, (tplBinding || {}) ) );
+
+						// dealing with l10n and dictionaries
+						// here, when we see the marks of %term, the l10n is applied
+						if(this.ref && this.ref.l10n){
+							tpl= this.ref.l10n.format(tpl);
+						}else if(this.dictionary){
+							tpl= this.dictionary.format(tpl);
+						}
+
+						
+						
+						return tpl;
+					};
+
+					/**
+					 * Returns a list with the registered templates.
+					 *
+					 * @method list
+					 * @return {Array}
+					 */
+					this.list= function(){
+						return templates;
+					};
+
+					/**
+					 * The list of available filters to be used in marups
+					 * within templates.
+					 *
+					 * To use such filters, you can use on your templates like this:
+					 * ${val | filter1 | filter2(arg) }
+					 *
+					 * Besides the default filters, we created some new ones. They are:
+					 *
+					 * - maxLen(limit) : truncates a string to that given size
+					 * - ceil : rounds numbers to its next round value(eg: 1.3 becomes 2)
+					 * - floor : rounds numbers to its previous round value(eg: 1.9 becomes 1)
+					 * - numberFormat(decimalLengh, thousandSeparator, decimalSeparator) : Formats number values
+					 * - pad(length, placeHolder, type) : fills a string using placeHolder(eg: "abc"|pad(5, "X") becomes "abcXX")
+					 * - focus(match) : Adds <strong> and </strong> to matched strings, inside the variable
+					 *
+					 * @property filters
+					 */
+					this.filters= {
+						maxLen: function(str, len){
+							return str.substring(0, len||undefined);
+						},
+						ceil: function(val){
+							return Math.ceil(val);
+						},
+						floor: function(val){
+							return Math.floor(val);
+						},
+						/* jshint ignore:start */
+						numberFormat: function(value, decPlaces, thouSeparator, decSeparator) {
+							var n = value,
+							decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces,
+							decSeparator = decSeparator == undefined ? "." : decSeparator,
+							thouSeparator = thouSeparator == undefined ? "," : thouSeparator,
+							sign = n < 0 ? "-" : "",
+							i = parseInt(n = Math.abs(+n || 0).toFixed(decPlaces)) + "",
+							j = (j = i.length) > 3 ? j % 3 : 0;
+							return sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
+						},
+						/* jshint ignore:end */
+						pad: function(value, length, placeholder, type){
+							return (""+value).pad(length, placeholder, type);
+						},
+
+						focus: function(value, match) {
+							var strValue = replaceAccents(value);
+							var strMatch = replaceAccents(match);
+							var matchIndex = strValue.toLowerCase().indexOf(strMatch.toLowerCase());
+							if(matchIndex >= 0){
+								var end = match.length;
+								return value.replace(value.substr(matchIndex, end), '<strong>'+value.substr(matchIndex, end)+'</strong>');
+							}
+						}
+					};
+
+					/**
+					 * It is the nunjucks engine itself.
+					 * You can use it to call any method straight from nunjucks
+					 * API.
+					 *
+					 * @property engine
+					 */
+					if(env){
+						this.setReferences(nunjucks, env);
+					}
+
+					return this;
+				};
+			};
+
+			var templatesString = {
+				question : '{{ name }}<div class="mdl-card question-section"><div class="mdl-card__supporting-text question-name">{{ sectionIndex + loop.index }}) {{ item.name }}?</div><div class="mdl-card__actions"><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}1"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}1" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="Conforme"><span class="mdl-radio__label ">C</span></label><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}2"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}2" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="NC"><span class="mdl-radio__label ">NC</span></label><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}3"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}3" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="NA"><span class="mdl-radio__label ">NA</span></label><div style="display:block; margin-top:10px;"><div id="wrapper-image-{{ sectionIndex + loop.index0 }}"></div><button type="button" style="display:block; margin-top:10px;" class="add-image" data-id="{{ sectionIndex + loop.index0 }}">Adicionar Foto</button></div><div class="mdl-textfield mdl-js-textfield" style="display:block;"><textarea class="mdl-textfield__input" placeholder="Obs" type="text" rows= "3" id="question-obs-{{ sectionIndex + loop.index0 }}" name="question-obs-{{ sectionIndex + loop.index0 }}"></textarea></div></div></div>',
+				section : '<section class="section--center mdl-grid mdl-shadow--2dp" id="{{ label }}"><h5 class="title">{{ sectionName }}</h5>{% for item in questions %}{% include question %}{% endfor %}</section>',
+				info : '<section class="section--center mdl-grid mdl-shadow--2dp" id="section-info"><h5 class="title">Dados do Estabelecimento</h5><label class="mdl-textfield mdl-js-textfield" for="store-name"><span class="mdl-radio__label ">Nome:</span><br><select name="store-name" class="mdl-textfield__input" id="store-name"><option value="">...</option><option value="Bocattino Novo Hamburgo">Bocattino Novo Hamburgo</option><option value="Bocattino Bourbom Country">Bocattino Bourbom Country</option><option value="Bocattino Bourbom Walling">Bocattino Bourbom Walling</option><option value="Bocattino Iguatemi">Bocattino Iguatemi</option><option value="Bocattino Barra">Bocattino Barra</option><option value="Bocattino Canoas">Bocattino Canoas</option><option value="Bocattino Pelotas">Bocattino Pelotas</option><option value="Bocattino São Leopoldo">Bocattino São Leopoldo</option><option value="Belgaleto Boulevard">Belgaleto Boulevard</option><option value="Belgaleto Ipiranga">Belgaleto Ipiranga</option><option value="Belgaleto Aeroporto">Belgaleto Aeroporto</option><option value="Bocattino Box Trend">Bocattino Box Trend</option><option value="Bocattino Box Unisinos">Bocattino Box Unisinos</option></select></label><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Responsável:</span><input class="mdl-textfield__input" type="text" name="store-register" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Alvará:</span><input class="mdl-textfield__input" type="text" name="store-manager" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Data:</span><input class="mdl-textfield__input" type="date" name="date-register" placeholder="Data"></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Hora:</span><input class="mdl-textfield__input" type="time" name="time-register" placeholder="Data"></div></section>'
+			}
+
+			var temp = new xxxx();
+			var templates = new temp();
+			for(var x in templatesString){
+				templates.create(x, templatesString[x]);
+			}
+
+			
+			
+
+            console.log(templates.render('section',{
+					 "sectionName":"ESTRUTURA FÍSICA",
+					 "label":"estruturafisica",
+					 "questions":[
+						{
+						   "name":"Ausência de focos de insalubridade(imediações, local e dependências anexas limpas);ausência de insetos e roedores."
+						},
+						{
+						   "name":"Caixa de  gordura em bom de conservação, higiene e funcionamento, ralo sifonado e com tampa."
+						},
+						{
+						   "name":"Piso, forro e paredes em adequado estado de conservação. Se não, solicitado conserto "
+						},
+						{
+						   "name":"Portas da área de preparação e armazenamento fechadas ou com dispositivo de fechamento, ajustadas aos batentes "
+						},
+						{
+						   "name":"Área interna do estabelecimento livre de objetos em desuso. Se não,solicitada retirada"
+						},
+						{
+						   "name":"Luminárias localizadas na área de preparação, armazenamento e dentro dos equipamentos com proteção anti queda e funcionando. Se não, foi solicitado conserto"
+						},
+						{
+						   "name":"Limpeza dos componentes do sistema de climatização e exaustão,troca de filtros registrados, verificados, datados e rubricados"
+						},
+						{
+						   "name":"Lavatórios dentro da área de manipulação usados exclusivamente para higiene das mãos com sabonete líquido inodoro anti-séptico, toalhas de papel não reciclados e coletor de papel, acionado sem contato manual,higienizados sempre que necessário e no mínimo diariamente."
+						},
+						{
+						   "name":"Existência de manutenção programada e periódica dos equipamentos e utensílios, com registro."
+						},
+						{
+						   "name":"Existência de instrumentos ou equipamentos de medição críticos para a segurança dos alimentos, tais como termômetros, relógios, entre outros."
+						}
+					 ]
+				  }));
+        </script>
+    </body>
+</html>

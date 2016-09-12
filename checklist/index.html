@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,38 +14,29 @@
     <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 		  <header class="mdl-layout__header">
-			<div class="mdl-layout__header-row">
-			  <!-- Title -->
-			  <span class="mdl-layout-title">Title</span>
-			  <!-- Add spacer, to align navigation to the right -->
-			  <div class="mdl-layout-spacer"></div>
-			  <!-- Navigation. We hide it in small screens. -->
-			  <nav class="mdl-navigation mdl-layout--large-screen-only">
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-			  </nav>
+			<div class="mdl-layout__header-row mdl-textfield--align-right">
+			  <div class="mdl-layout-title mdl-layout-spacer" id="question-count">:)</div>
 			</div>
 		  </header>
 		  <div class="mdl-layout__drawer">
-			<span class="mdl-layout-title">Title</span>
-			<nav class="mdl-navigation">
-			  <a class="mdl-navigation__link" href="">Link</a>
-			  <a class="mdl-navigation__link" href="">Link</a>
-			  <a class="mdl-navigation__link" href="">Link</a>
-			  <a class="mdl-navigation__link" href="">Link</a>
-			</nav>
+			<span class="mdl-layout-title">Seções</span>
+			<nav class="mdl-navigation nav-section-text" id="nav-sections"></nav>
 		  </div>
         <main class="mdl-layout__content">
             <div class="mdl-layout__tab-panel is-active" id="overview">
-				<center><h5 id="checklist-name">Name check</h5></center>
-				<form name="checklist-questions" id="form-checklist"></form>    
+				<center><h5 id="checklist-name"></h5></center>				
+				<form name="checklist-questions" id="form-checklist">
+					<div style="display:block; width:100%; text-align:center; margin-top:100px ">
+					<div class="mdl-spinner mdl-js-spinner is-active is-upgraded" data-upgraded=",MaterialSpinner"><div class="mdl-spinner__layer mdl-spinner__layer-1"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-2"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-3"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div><div class="mdl-spinner__layer mdl-spinner__layer-4"><div class="mdl-spinner__circle-clipper mdl-spinner__left"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__gap-patch"><div class="mdl-spinner__circle"></div></div><div class="mdl-spinner__circle-clipper mdl-spinner__right"><div class="mdl-spinner__circle"></div></div></div></div>
+					</div>					
+				</form>
             </div>        
         </main>
         </div>
         <script defer src="js/material.min.js"></script>
         <script defer src="js/nunjucks.min.js"></script>
+        <script defer src="js/jspdf.min.js"></script>
+        <script defer src="js/jspdf.plugin.autotable.src.js"></script>
         <script defer src="js/main.js"></script>
         <script type="text/javascript">
             if('serviceWorker' in navigator){
