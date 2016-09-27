@@ -41,7 +41,7 @@
         <script type="text/javascript">
             if('serviceWorker' in navigator){
             	navigator.serviceWorker.register('js/sw.js', {
-            		scope: '/'
+            		scope: '/checklist/'
             	}).then(function(reg) {
             		//document.getElementById('tesste').innerHTML = '-------> SUCCESS';
             	}, function(err) {
