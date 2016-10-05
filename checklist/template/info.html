@@ -19,20 +19,32 @@
 			<option value="Bocattino Box Unisinos">Bocattino Box Unisinos</option>
 		</select>
 	</label>
+	<label class="mdl-textfield mdl-js-textfield" for="checklist-visit">
+		<span class="mdl-radio__label ">Visita:</span><br>
+		<select name="checklist-visit" class="mdl-textfield__input" id="checklist-visit">
+			<option value="">...</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+		</select>
+	</label>
 	<div class="mdl-textfield mdl-js-textfield">
 		<span class="mdl-radio__label ">Responsável:</span>
-		<input class="mdl-textfield__input" type="text" name="store-register" placeholder="...">
+		<input class="mdl-textfield__input" type="text" name="store-responsible" placeholder="...">
 	</div>
 	<div class="mdl-textfield mdl-js-textfield">
 		<span class="mdl-radio__label ">Alvará:</span>
-		<input class="mdl-textfield__input" type="text" name="store-manager" placeholder="...">
+		<input class="mdl-textfield__input" type="text" name="store-charter" placeholder="...">
 	</div>
 	<div class="mdl-textfield mdl-js-textfield">
 		<span class="mdl-radio__label ">Data:</span>
-		<input class="mdl-textfield__input" type="date" name="date-register" placeholder="Data">
+		<input class="mdl-textfield__input" type="date" name="checklist-date" placeholder="Data">
 	</div>
 	<div class="mdl-textfield mdl-js-textfield">
 		<span class="mdl-radio__label ">Hora:</span>
-		<input class="mdl-textfield__input" type="time" name="time-register" placeholder="Data">
+		<input class="mdl-textfield__input" type="time" name="checklist-hour" placeholder="Data">
+	</div>
+	<h5 class="title">Observações Gerais</h5>
+	<div class="mdl-textfield mdl-js-textfield">
+		<textarea class="mdl-textfield__input" name="checklist-obs" placeholder="..."></textarea>
 	</div>
 </section>

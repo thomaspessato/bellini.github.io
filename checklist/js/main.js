@@ -285,7 +285,7 @@
 		var templatesString = {
 			question : '<div class="mdl-card question-section"><div class="mdl-card__supporting-text question-name">{{ sectionIndex + loop.index }}) {{ item.name }}?</div><div class="mdl-card__actions"><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}1"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}1" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="Conforme"><span class="mdl-radio__label ">C</span></label><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}2"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}2" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="NC"><span class="mdl-radio__label ">NC</span></label><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}3"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}3" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="NA"><span class="mdl-radio__label ">NA</span></label><div style="display:block; margin-top:10px;"><div id="wrapper-image-{{ sectionIndex + loop.index0 }}"></div><button type="button" style="display:block; margin-top:10px;" class="add-image" data-id="{{ sectionIndex + loop.index0 }}">Adicionar Foto</button></div><div class="mdl-textfield mdl-js-textfield" style="display:block;"><textarea class="mdl-textfield__input" placeholder="Obs" type="text" rows= "3" id="question-obs-{{ sectionIndex + loop.index0 }}" name="question-obs-{{ sectionIndex + loop.index0 }}"></textarea></div></div></div>',
 			section : '<section class="section--center mdl-grid mdl-shadow--2dp" id="{{ label }}"><h5 class="title">{{ sectionName }}</h5>{% for item in questions %}{% include question %}{% endfor %}</section>',
-			info : '<section class="section--center mdl-grid mdl-shadow--2dp" id="section-info"><h5 class="title">Dados do Estabelecimento</h5><label class="mdl-textfield mdl-js-textfield" for="store-name"><span class="mdl-radio__label ">Nome:</span><br><select name="store-name" class="mdl-textfield__input" id="store-name"><option value="">...</option><option value="Bocattino Novo Hamburgo">Bocattino Novo Hamburgo</option><option value="Bocattino Bourbom Country">Bocattino Bourbom Country</option><option value="Bocattino Bourbom Walling">Bocattino Bourbom Walling</option><option value="Bocattino Iguatemi">Bocattino Iguatemi</option><option value="Bocattino Barra">Bocattino Barra</option><option value="Bocattino Canoas">Bocattino Canoas</option><option value="Bocattino Pelotas">Bocattino Pelotas</option><option value="Bocattino São Leopoldo">Bocattino São Leopoldo</option><option value="Belgaleto Boulevard">Belgaleto Boulevard</option><option value="Belgaleto Ipiranga">Belgaleto Ipiranga</option><option value="Belgaleto Aeroporto">Belgaleto Aeroporto</option><option value="Bocattino Box Trend">Bocattino Box Trend</option><option value="Bocattino Box Unisinos">Bocattino Box Unisinos</option></select></label><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Responsável:</span><input class="mdl-textfield__input" type="text" name="store-register" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Alvará:</span><input class="mdl-textfield__input" type="text" name="store-manager" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Data:</span><input class="mdl-textfield__input" type="date" name="date-register" placeholder="Data"></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Hora:</span><input class="mdl-textfield__input" type="time" name="time-register" placeholder="Data"></div></section>'
+			info : '<section class="section--center mdl-grid mdl-shadow--2dp" id="section-info"><h5 class="title">Dados do Estabelecimento</h5><label class="mdl-textfield mdl-js-textfield" for="store-name"><span class="mdl-radio__label ">Nome:</span><br><select name="store-name" class="mdl-textfield__input" id="store-name"><option value="">...</option><option value="Bocattino Novo Hamburgo">Bocattino Novo Hamburgo</option><option value="Bocattino Bourbom Country">Bocattino Bourbom Country</option><option value="Bocattino Bourbom Walling">Bocattino Bourbom Walling</option><option value="Bocattino Iguatemi">Bocattino Iguatemi</option><option value="Bocattino Barra">Bocattino Barra</option><option value="Bocattino Canoas">Bocattino Canoas</option><option value="Bocattino Pelotas">Bocattino Pelotas</option><option value="Bocattino São Leopoldo">Bocattino São Leopoldo</option><option value="Belgaleto Boulevard">Belgaleto Boulevard</option><option value="Belgaleto Ipiranga">Belgaleto Ipiranga</option><option value="Belgaleto Aeroporto">Belgaleto Aeroporto</option><option value="Bocattino Box Trend">Bocattino Box Trend</option><option value="Bocattino Box Unisinos">Bocattino Box Unisinos</option></select></label><label class="mdl-textfield mdl-js-textfield" for="checklist-visit"><span class="mdl-radio__label ">Visita:</span><br><select name="checklist-visit" class="mdl-textfield__input" id="checklist-visit"><option value="">...</option><option value="1">1</option><option value="2">2</option></select></label><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Responsável:</span><input class="mdl-textfield__input" type="text" name="store-responsible" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Alvará:</span><input class="mdl-textfield__input" type="text" name="store-charter" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Data:</span><input class="mdl-textfield__input" type="date" name="checklist-date" placeholder="Data"></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Hora:</span><input class="mdl-textfield__input" type="time" name="checklist-hour" placeholder="Data"></div><h5 class="title">Observações Gerais</h5><div class="mdl-textfield mdl-js-textfield"><textarea class="mdl-textfield__input" name="checklist-obs" placeholder="..."></textarea></div></section>'
 		}
 
 		var temp = new PRIVATE.NunjucksModule();
@@ -325,7 +325,7 @@
 				PRIVATE.questionLength = sectionIndex;
 				PRIVATE.elemQuestionCount.innerHTML = "0/" + sectionIndex;
 
-				PRIVATE.elemForm.innerHTML = html + '<div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised">Enviar</button></div><br><br><br><div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised" type="reset" onclick="location.hash = \'\';location.hash=\'section-info\'">Limpar</button></div>';
+				PRIVATE.elemForm.innerHTML = html + '<div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised">Enviar</button></div><br><br><br><div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised" type="reset" onclick="location.hash = \'\';location.hash=\'section-info\'">Limpar</button><br><br><br></div>';
 				PRIVATE.setStoreInfo();
 				bindEvents();
 			});
@@ -336,14 +336,14 @@
 		PRIVATE.elemSectionInfo = document.getElementById("section-info");
 
 		var date = new Date();
-		PRIVATE.elemSectionInfo.querySelector('input[name="date-register"]').value = date.yyyymmdd('-');
-		PRIVATE.elemSectionInfo.querySelector('input[name="time-register"]').value = date.HHmm('-');
+		PRIVATE.elemSectionInfo.querySelector('input[name="checklist-date"]').value = date.yyyymmdd('-');
+		PRIVATE.elemSectionInfo.querySelector('input[name="checklist-hour"]').value = date.HHmm('-');
 	};
 
 	PRIVATE.getDateTime = function(){
-		var date = PRIVATE.elemSectionInfo.querySelector('input[name="date-register"]').value.split('-');
+		var date = PRIVATE.elemSectionInfo.querySelector('input[name="checklist-date"]').value.split('-');
 
-		return date[2] +'/'+ date[1] +'/'+ date[0] +' '+ PRIVATE.elemSectionInfo.querySelector('input[name="time-register"]').value;
+		return date[2] +'/'+ date[1] +'/'+ date[0] +' '+ PRIVATE.elemSectionInfo.querySelector('input[name="checklist-hour"]').value;
 	};
 
 	PRIVATE.checkQuestionStatus = function(){
@@ -462,7 +462,31 @@
 			var i, posImageCount = 0,
 				imageWith = 300,
 				imageHeight = 145,
-				posImage, posDoc, text, doc = new jsPDF('p', 'pt');
+				posImage, posDoc = 10, text, doc = new jsPDF('p', 'pt');
+
+			var lastPage = doc.internal.pages.length;
+
+			function calcPagination(margin, objHeight){
+				if(doc.internal.pages.length == lastPage){
+					posDoc += margin + objHeight;
+
+					//console.log('----------->' + posDoc);
+
+					if(posDoc >= doc.internal.pageSize.height){
+						doc.addPage();
+						//console.log('-----------> NEW PAGE');
+						posDoc = 40 + objHeight;
+					}
+				}else{
+					//console.log('-----------> PAGE CREATE');
+					posDoc = doc.autoTableEndPosY() + objHeight;
+				}
+
+				lastPage = doc.internal.pages.length;
+
+				return posDoc - objHeight;
+
+			}
 
 			//Logo
 			doc.addImage(PRIVATE.getTextImage('logoboca'), 'JPEG', 20, 20, 75, 0);
@@ -472,11 +496,15 @@
 			//********************************************
 			// Infos da empresa
 			//********************************************
-			var storeName = PRIVATE.elemSectionInfo.querySelector('select[name="store-name"]').value;
+			var storeName = PRIVATE.elemSectionInfo.querySelector('select[name="store-name"]').value,
+				checklistVisit = PRIVATE.elemSectionInfo.querySelector('select[name="checklist-visit"]').value,
+				checklistObs = PRIVATE.elemSectionInfo.querySelector('textarea[name="checklist-obs"]').value;
+
 			var storeInfo = [
 				{name : "EMPRESA",  value : storeName},
-				{name : "ALVARA" , value : PRIVATE.elemSectionInfo.querySelector('input[name="store-register"]').value},
-				{name : "RESPONSÁVEL" , value : PRIVATE.elemSectionInfo.querySelector('input[name="store-manager"]').value},
+				{name : "VISITA",  value : checklistVisit},
+				{name : "ALVARA" , value : PRIVATE.elemSectionInfo.querySelector('input[name="store-charter"]').value},
+				{name : "RESPONSÁVEL" , value : PRIVATE.elemSectionInfo.querySelector('input[name="store-responsible"]').value},
 				{name : "DATA/HORA" , value : PRIVATE.getDateTime()}
 			];
 
@@ -485,6 +513,9 @@
 				startY: 65,
 				theme: 'grid'
 			});
+
+			//Update position
+			calcPagination(doc.autoTableEndPosY(),0);
 
 			doc.setFontSize(10);
 			doc.setTextColor(255, 255, 255);
@@ -497,15 +528,18 @@
 			//********************************************
 			doc.autoTable(getColumns(), PRIVATE.questionList, {
 				margin: {horizontal: 20},
-				startY: doc.autoTableEndPosY() + 10,
+				startY: calcPagination(10,0),
 				theme: 'grid'
 			});
+
+			//Update position
+			calcPagination(doc.autoTableEndPosY(),0);
 
 			doc.setTextColor(0);
 			doc.setFontSize(10);
 			doc.setFontType("normal");
-			doc.text("NC = Não Conforme:", 20, doc.autoTableEndPosY() + 20);
-			doc.text("NA = Não avaliado/ Não se aplica:", 20, doc.autoTableEndPosY() + 32);
+			doc.text("NC = Não Conforme:", 20, calcPagination(20,0));
+			doc.text("NA = Não avaliado/ Não se aplica:", 20, calcPagination(12,0));
 
 
 			//********************************************
@@ -532,50 +566,51 @@
 
 			doc.setFontSize(18);
 			doc.setFontType("bold");
-			doc.text("Avaliação Final: " + points.toFixed(2) + "%" , 20, doc.autoTableEndPosY() + 60);
+			doc.text("Avaliação Final: " + points.toFixed(2) + "%" , 20, calcPagination(30,0));
+
+
+			//********************************************
+			//Observações Gerais
+			//********************************************
+			if(checklistObs != ""){
+				doc.setTextColor(0);
+				doc.setFontSize(14);
+				doc.setFontType("bold");
+				doc.text("Observações Gerais:", 20, calcPagination(30,0));
+
+				doc.setFontType("normal");
+				doc.setFontSize(10);
+				text = doc.splitTextToSize(checklistObs, doc.internal.pageSize.width - 40, {});
+				doc.text(text, 20, calcPagination(15, text.length * 12));
+			}
 
 
 			//********************************************
 			//Imagens em anexo
 			//********************************************
-			doc.addPage();
 			doc.setTextColor(0);
 			doc.setFontSize(14);
 			doc.setFontType("bold");
-			doc.text("Fotos referentes a visita:", 20, 40);
+			doc.text("Fotos referentes a visita:", 20, calcPagination(20, 15));
 
 			doc.setFontType("normal");
 			doc.setFontSize(10);
-			posDoc = 40;
 
 			for(i=0; i<PRIVATE.questionList.length; i++){
 				if(PRIVATE.questionList[i].image && PRIVATE.questionList[i].image.length > 0) {
 					text = doc.splitTextToSize(PRIVATE.questionList[i].name, doc.internal.pageSize.width - 40, {});
-					doc.text(text, 20, posDoc+=30);
-
+					doc.text(text, 20, calcPagination(10, text.length * 12));
 
 					for(var j=0; j<PRIVATE.questionList[i].image.length; j++){
-						posImage = posDoc + imageHeight * posImageCount + 15;
-
-						if((posImage + imageHeight) > doc.internal.pageSize.height) { // new page
-							posDoc = 0;
-							posImageCount = 0;
-							doc.addPage();
-							posImage = posDoc + imageHeight * posImageCount + 40;
-						}
-
-						doc.addImage(PRIVATE.questionList[i].image[j], 'JPEG', 20, posImage, imageWith, imageHeight);
-
-						posImageCount = 1;
-						posDoc = posImage;
+						doc.addImage(PRIVATE.questionList[i].image[j], 'JPEG', 20, calcPagination(10, imageHeight), imageWith, imageHeight);
 					}
 
-					posDoc += imageHeight; //set cursor for end of image
-					posImageCount = 0;
+					//add margin
+					calcPagination(30,0);
 				}
 			}
 
-			doc.save(storeName + '.pdf');
+			doc.save(storeName + '-' + checklistVisit + '.pdf');
 		}, function() {
 
 		});
