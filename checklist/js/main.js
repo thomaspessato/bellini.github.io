@@ -285,7 +285,7 @@
 		var templatesString = {
 			question : '<div class="mdl-card question-section"><div class="mdl-card__supporting-text question-name">{{ sectionIndex + loop.index }}) {{ item.name }}?</div><div class="mdl-card__actions"><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}1"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}1" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="Conforme"><span class="mdl-radio__label ">C</span></label><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}2"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}2" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="NC"><span class="mdl-radio__label ">NC</span></label><label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="option-{{ sectionIndex + loop.index0 }}3"><input type="radio" id="option-{{ sectionIndex + loop.index0 }}3" class="mdl-radio__button" name="question-{{ sectionIndex + loop.index0 }}" value="NA"><span class="mdl-radio__label ">NA</span></label><div style="display:block; margin-top:10px;"><div id="wrapper-image-{{ sectionIndex + loop.index0 }}"></div><button type="button" style="display:block; margin-top:10px;" class="add-image" data-id="{{ sectionIndex + loop.index0 }}">Adicionar Foto</button></div><div class="mdl-textfield mdl-js-textfield" style="display:block;"><textarea class="mdl-textfield__input" placeholder="Obs" type="text" rows= "3" id="question-obs-{{ sectionIndex + loop.index0 }}" name="question-obs-{{ sectionIndex + loop.index0 }}"></textarea></div></div></div>',
 			section : '<section class="section--center mdl-grid mdl-shadow--2dp" id="{{ label }}"><h5 class="title">{{ sectionName }}</h5>{% for item in questions %}{% include question %}{% endfor %}</section>',
-			info : '<section class="section--center mdl-grid mdl-shadow--2dp" id="section-info"><h5 class="title">Dados do Estabelecimento</h5><label class="mdl-textfield mdl-js-textfield" for="store-name"><span class="mdl-radio__label ">Nome:</span><br><select name="store-name" class="mdl-textfield__input" id="store-name"><option value="">...</option><option value="Bocattino Novo Hamburgo">Bocattino Novo Hamburgo</option><option value="Bocattino Bourbom Country">Bocattino Bourbom Country</option><option value="Bocattino Bourbom Walling">Bocattino Bourbom Walling</option><option value="Bocattino Iguatemi">Bocattino Iguatemi</option><option value="Bocattino Barra">Bocattino Barra</option><option value="Bocattino Canoas">Bocattino Canoas</option><option value="Bocattino Pelotas">Bocattino Pelotas</option><option value="Bocattino São Leopoldo">Bocattino São Leopoldo</option><option value="Belgaleto Boulevard">Belgaleto Boulevard</option><option value="Belgaleto Ipiranga">Belgaleto Ipiranga</option><option value="Belgaleto Aeroporto">Belgaleto Aeroporto</option><option value="Bocattino Box Trend">Bocattino Box Trend</option><option value="Bocattino Box Unisinos">Bocattino Box Unisinos</option></select></label><label class="mdl-textfield mdl-js-textfield" for="checklist-visit"><span class="mdl-radio__label ">Visita:</span><br><select name="checklist-visit" class="mdl-textfield__input" id="checklist-visit"><option value="">...</option><option value="1">1</option><option value="2">2</option></select></label><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Responsável:</span><input class="mdl-textfield__input" type="text" name="store-responsible" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Alvará:</span><input class="mdl-textfield__input" type="text" name="store-charter" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Data:</span><input class="mdl-textfield__input" type="date" name="checklist-date" placeholder="Data"></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Hora:</span><input class="mdl-textfield__input" type="time" name="checklist-hour" placeholder="Data"></div><h5 class="title">Observações Gerais</h5><div class="mdl-textfield mdl-js-textfield"><textarea class="mdl-textfield__input" name="checklist-obs" placeholder="..."></textarea></div></section>'
+			info : '<section class="section--center mdl-grid mdl-shadow--2dp" id="section-info"><h5 class="title">Dados do Estabelecimento</h5><label class="mdl-textfield mdl-js-textfield" for="store-name"><span class="mdl-radio__label ">Nome:</span><br><select name="store-name" class="mdl-textfield__input" id="store-name"><option value="">...</option><option value="Bocattino Novo Hamburgo">Bocattino Novo Hamburgo</option><option value="Bocattino Bourbom Country">Bocattino Bourbom Country</option><option value="Bocattino Bourbom Walling">Bocattino Bourbom Walling</option><option value="Bocattino Iguatemi">Bocattino Iguatemi</option><option value="Bocattino Barra">Bocattino Barra</option><option value="Bocattino Canoas">Bocattino Canoas</option><option value="Bocattino Pelotas">Bocattino Pelotas</option><option value="Bocattino São Leopoldo">Bocattino São Leopoldo</option><option value="Belgaleto Boulevard">Belgaleto Boulevard</option><option value="Belgaleto Ipiranga">Belgaleto Ipiranga</option><option value="Belgaleto Aeroporto">Belgaleto Aeroporto</option><option value="Bocattino Box Trend">Bocattino Box Trend</option><option value="Bocattino Box Unisinos">Bocattino Box Unisinos</option></select></label><label class="mdl-textfield mdl-js-textfield" for="checklist-visit"><span class="mdl-radio__label ">Visita:</span><br><select name="checklist-visit" class="mdl-textfield__input" id="checklist-visit"><option value="">...</option><option value="1">1</option><option value="2">2</option></select></label><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Responsável:</span><input class="mdl-textfield__input" type="text" name="store-responsible" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Alvará:</span><input class="mdl-textfield__input" type="text" name="store-charter" placeholder="..."></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Data:</span><input class="mdl-textfield__input" type="date" name="checklist-date" placeholder="Data"></div><div class="mdl-textfield mdl-js-textfield"><span class="mdl-radio__label ">Hora:</span><input class="mdl-textfield__input" type="time" name="checklist-hour" placeholder="Data"></div><h5 class="title">Observações Gerais</h5><div class="mdl-textfield mdl-js-textfield"><textarea class="mdl-textfield__input" name="checklist-obs" placeholder="..."></textarea></div><div style="display:block; margin-top:10px;"><div id="wrapper-image-obs"></div><button type="button" style="display:block; margin-top:10px;" class="add-image" data-id="obs">Adicionar Foto</button></div></section>'
 		}
 
 		var temp = new PRIVATE.NunjucksModule();
@@ -325,7 +325,7 @@
 				PRIVATE.questionLength = sectionIndex;
 				PRIVATE.elemQuestionCount.innerHTML = "0/" + sectionIndex;
 
-				PRIVATE.elemForm.innerHTML = html + '<div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised">Enviar</button></div><br><br><br><div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised" type="reset" onclick="location.hash = \'\';location.hash=\'section-info\'">Limpar</button><br><br><br></div>';
+				PRIVATE.elemForm.innerHTML = html + '<div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised">Enviar</button></div><div class="wrapper-button"><button class="mdl-button mdl-js-button mdl-button--raised" type="reset">Limpar</button></div>';
 				PRIVATE.setStoreInfo();
 				bindEvents();
 			});
@@ -370,12 +370,40 @@
 		});
 
 		//Form submit
+		PRIVATE.elemForm.addEventListener("reset", function(evt){
+			var confirmSubmit = confirm('Quer limpar o formulário?');
+
+			if(confirmSubmit){
+				location.hash = '';
+				location.hash='section-info';
+				PRIVATE.elemForm.reset();
+			}
+		});
+
+		//Form submit
 		PRIVATE.elemForm.addEventListener("submit", function(evt){
 			evt.preventDefault();
 
-			var obs, anwser, imgs;
+			var confirmSubmit = confirm('Quer gerar o PDF?');
+
+			if(!confirmSubmit){
+				return false;
+			}
+
+			var obs, anwser, imgs, imgsObs;
 
 			PRIVATE.imagePromises = []; //reset promises;
+
+			imgsObs = PRIVATE.elemSectionInfo.querySelectorAll('input[type=file]');
+
+			PRIVATE.imagesObs = [];
+			for(var j=0; j<imgsObs.length; j++){
+				if(imgsObs[j].value){
+					PRIVATE.imageAsDataUrl(imgsObs[j], PRIVATE.imagesObs);
+				}
+			}
+
+
 
 			for(var i=0; i<PRIVATE.elemQuestions.length; i++){
 
@@ -396,7 +424,7 @@
 					PRIVATE.questionList[i].image = [];
 					for(var j=0; j<imgs.length; j++){
 						if(imgs[j].value){
-							readURL(imgs[j], i);
+							PRIVATE.imageAsDataUrl(imgs[j], PRIVATE.questionList[i].image);
 						}
 					}
 				}
@@ -434,18 +462,18 @@
 		}
 	}
 
-	function readURL(input, index) {
+	PRIVATE.imageAsDataUrl = function(input, objCallback) {
 		PRIVATE.imagePromises.push(new Promise(function(resolve, reject) {
 			if(input && input.files && input.files.length > 0){
 				var reader = new FileReader();
 				reader.readAsDataURL(input.files[0]);
 				reader.onload = function (e) {
-					PRIVATE.questionList[index].image.push(e.target.result);
+					objCallback.push(e.target.result);
 					resolve();
 				};
 			}
 		}));
-	}
+	};
 
 	populateChecklist();
 
@@ -582,6 +610,11 @@
 				doc.setFontSize(10);
 				text = doc.splitTextToSize(checklistObs, doc.internal.pageSize.width - 40, {});
 				doc.text(text, 20, calcPagination(15, text.length * 12));
+
+
+				for(var j=0; j<PRIVATE.imagesObs.length; j++){
+					doc.addImage(PRIVATE.imagesObs[j], 'JPEG', 20, calcPagination(10, imageHeight), imageWith, imageHeight);
+				}
 			}
 
 
